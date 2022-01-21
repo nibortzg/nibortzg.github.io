@@ -77,4 +77,4 @@ downsample_layer = nn.Sequential(
 
 
 ## 重要結論:
-> 以前認為Vision transformer 有比較少 inductive bias(prior) 所以在大的pretrain size 可以學得比較好，但是ConvNext 實驗證明，好好設計的ConvNet 並不會輸。
+> 以前認為Vision transformer 有比較少 inductive bias(prior) 所以在有大量pretrain data的情況下可以學得比較好， 但是ConvNext 實驗證明， 好好設計的ConvNet 並不會輸。
