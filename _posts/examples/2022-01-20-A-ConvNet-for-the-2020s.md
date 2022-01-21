@@ -9,22 +9,22 @@ tags: [Computer vision]
 math: true
 mermaid: true
 image:
-  src: 
+  src: https://i.imgur.com/ddJGZsj.png
 
   width: 800
   height: 500
 ---
 
 ## 前言: 
-近幾年vision transformer 在各種會議上大放異彩, 但隨著演進, 我們也可以發現transformer 引進越來越多跟CNN 相關的prior,像是swin transformer的local window 就很有ConvNet的味道。我們發現vision transformer 和 CNN 變得越來越像, 且在一些下游任務中, 這些內建於CNN之中的bias會使得任務更好完成, 例如translation equivariance 對於object detection任務而言就很重要。
+近幾年vision transformer 在各種會議上大放異彩, 隨著演進, 我們也可以發現transformer 引進越來越多跟CNN 相關的prior, 像是swin transformer的local window 就很有ConvNet的味道。觀察中可以發現vision transformer 和 CNN 變得越來越像, 且在一些下游任務中, 這些內建於CNN之中的bias會使得任務更好完成, 例如translation equivariance 對於object detection任務而言就很重要。
 
-第二點來說，對於現在vision transformer 成功的關鍵，是在於transformer 本身，還是training techniques與一些其餘組件的改動，造成整體performance 的提升也是值得思考得問題，例如專精於training techniques 提昇讓Resnet 復活的論文[ResNet strikes back: An improved training procedure in timm](https://arxiv.org/pdf/2110.00476.pdf) 或是 [Patches are all you need](https://openreview.net/pdf?id=TVHS5Y4dNvM) 討論patches是否才是成功關鍵，都是值得思考的問題。
+第二， 對於現在vision transformer 成功的關鍵，是在於transformer 本身，還是training techniques與一些其餘組件的改動，造成整體performance 的提升也是值得思考得問題，例如專精於training techniques 提昇讓Resnet 復活的論文[`ResNet strikes back: An improved training procedure in timm`](https://arxiv.org/pdf/2110.00476.pdf) 或是 [`Patches are all you need`](https://openreview.net/pdf?id=TVHS5Y4dNvM) 討論patches是否才是成功關鍵，都是值得思考的問題。
 
-作者在此篇論文像是抄作業一般將他認為swin transformer 勝過於目前Resnet的關鍵抄過去，一步一步的 "modernizing" Resnet.
+作者在此篇論文像是抄作業一般將他認為swin transformer 勝過於目前Resnet的關鍵複製過去，一步一步的 "modernizing" Resnet.
 
 ## 方法:
 ### 1. 訓練技術改進(Training techniques)
-在前面提到timm 那篇論文中有提到光靠訓練技術(data augumentation, optimizer, training receipts)的進步就可以將resnet50 調到80.4, 但作者在這邊為了方便與swin transformer 比較, 使用與他們相近的訓練技術。光是這樣performance 就從76.1% -> 78.8% 有了2.7% 的進步。
+在前面提到timm 那篇論文中有提到光靠訓練技術(data augumentation, optimizer, training receipts)的進步就可以將Resnet50 上調到80.4, 但作者在這邊為了方便與swin transformer 比較, 使用與他們相近的訓練技術。光是這樣performance 就從76.1% -> 78.8% 有了2.7% 的進步。
 
 
 ### 2. 改變stage 的compute ratio
@@ -33,6 +33,7 @@ image:
 
 ### 3. 將stem 改成patch 形式
 Stem 就是圖片進到CNN的第一層結構, 由於一般圖片都有很多冗餘資訊，所以基本上會採用很激進的dwonsample 策略，將input image縮成適當比例的feature map 再做操作。原本的Resnet 是使用7x7 conv with stride 2與max pooling 連結達到4倍 downsampling 的結果, 這裡使用激進的patchify做法，也就是使用large kernel size with non-overlapping convolution. 在此作者使用 4x4 convolution with stride 4.
+
 ```python
  stem = nn.Sequential(
             nn.Conv2d(in_chans, dims[0], kernel_size=4, stride=4),
@@ -64,14 +65,16 @@ BN 在ConvNet中可以穩定training 也可以減少過擬合, 然而近期的�
 ![](https://i.imgur.com/VgNz2a9.png)
 
 ### 9. Downsampling layer 改成patch 形式
+
 ```python
 downsample_layer = nn.Sequential(
                     LayerNorm(dims[i], eps=1e-6, data_format="channels_first"),
                     nn.Conv2d(dims[i], dims[i+1], kernel_size=2, stride=2),
             )
 ```
-若直接將downsampling layer 改成non-overlapping 的convolution, 會發散，所以要加入 normalization layers 穩定training 
+
+若直接將downsampling layer 改成non-overlapping 的convolution, CNN會發散，所以要加入 normalization layers 來穩定training 
 
 
 ## 重要結論:
-1. 以前認為Vision transformer 有比較少 inductive bias(prior) 所以在大的pretrain size 可以學得比較好，但是ConvNext 實驗證明，好好設計的ConvNet 並不會輸。
+> 以前認為Vision transformer 有比較少 inductive bias(prior) 所以在大的pretrain size 可以學得比較好，但是ConvNext 實驗證明，好好設計的ConvNet 並不會輸。
