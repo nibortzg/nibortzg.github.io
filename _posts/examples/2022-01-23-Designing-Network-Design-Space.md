@@ -3,7 +3,7 @@ title: (論文筆記) Designing Network Design Spaces -> Regnet
 author:
   name: Nibor
   link: 
-date: 2021-01-23 20:30:00 +0800
+date: 2021-01-23 20:30:00 +0:00
 categories: [Computer Vision, Design Paragigm]
 tags: [Computer Vision, CVPR, FAIR, Design Paragigm]
 math: true
