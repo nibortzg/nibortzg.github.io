@@ -8,8 +8,8 @@ categories: [Computer Vision,Design Paragigm]
 tags: [Computer Vision]
 math: true
 mermaid: true
-  image: https://i.imgur.com/znfBRJe.png
-  src: 
+image: 
+  src: https://i.imgur.com/znfBRJe.png
 
   width: 800
   height: 500
