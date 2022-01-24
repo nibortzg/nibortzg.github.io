@@ -3,7 +3,7 @@ title: (論文筆記) Designing Network Design Spaces -> Regnet
 author:
   name: Nibor
   link: 
-date: 2021-01-20 22:33:00 +0800
+date: 2021-01-23 20:30:00 +0800
 categories: [Computer Vision, Design Paragigm]
 tags: [Computer Vision]
 math: true
@@ -29,8 +29,8 @@ image:
 
 在縮減過程中作者得到幾個結論
 
-1. AnyNetX_B & AnyNetX_C 若所有的 $b_i = b$ 且 $g_i = g$, 所得到EDF的並不會變化,所以accuracy 並不會有所損失
-2. AnyNetX_D & AnyNet_E,若 $w_{i+1} \geq w_i$ 且 $d_{i+1} \geq d_{i}$ 則可以讓整體精確度上升
+1. AnyNetX_B & AnyNetX_C **若所有的 $b_i = b$ 且 $g_i = g$, 所得到EDF的並不會變化,所以accuracy 並不會有所損失**
+2. AnyNetX_D & AnyNet_E,**若 $w_{i+1} \geq w_i$ 且 $d_{i+1} \geq d_{i}$ 則可以讓整體精確度上升**
 
 
 ![](https://i.imgur.com/rG6L2wP.png)
