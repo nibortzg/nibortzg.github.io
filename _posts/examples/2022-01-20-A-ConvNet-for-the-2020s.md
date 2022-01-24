@@ -4,8 +4,8 @@ author:
   name: Nibor
   link: 
 date: 2021-01-20 22:33:00 +0800
-categories: [Computer Vision]
-tags: [Computer Vision, FAIR]
+categories: [Computer Vision, Design Paragigm]
+tags: [Computer Vision, FAIR, Design Paragigm]
 math: true
 mermaid: true
 image:
