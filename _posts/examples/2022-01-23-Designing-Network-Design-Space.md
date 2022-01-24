@@ -4,7 +4,7 @@ author:
   name: Nibor
   link: 
 date: 2021-01-20 22:33:00 +0800
-categories: [Computer Vision,Design Paragigm]
+categories: [Computer Vision, Design Paragigm]
 tags: [Computer Vision]
 math: true
 mermaid: true
