@@ -29,8 +29,10 @@ image:
 
 在縮減過程中作者得到幾個結論
 
-1. AnyNetX_B & AnyNetX_C **若所有的 $b_i = b$ 且 $g_i = g$, 所得到EDF的並不會變化,所以accuracy 並不會有所損失**
-2. AnyNetX_D & AnyNet_E,**若 $w_{i+1} \geq w_i$ 且 $d_{i+1} \geq d_{i}$ 則可以讓整體精確度上升**
+1. $AnyNetX_B$ & $AnyNetX_C$<br> 
+**若所有的 $b_i = b$ 且 $g_i = g$, 所得到EDF的並不會變化,所以accuracy 並不會有所損失**
+2. $AnyNetX_D$ & $AnyNet_E$<br> 
+**若 $w_{i+1} \geq w_i$ 且 $d_{i+1} \geq d_{i}$ 則可以讓整體精確度上升**
 
 
 ![](https://i.imgur.com/rG6L2wP.png)
@@ -53,5 +55,5 @@ activation 定義: the sizeof the output tensor of all conv layers
 Ablation study 結論:
 1. inverted bottleneck 會使performance 下降
 2. Swish  vs ReLU: swish 在低flops 時比較好，ReLU 在高flops 比較好, 且swish 在depthwise conv 時表現得比ReLU 好很多
-3. SE 會增加精度
+3. SE (squeeze and excitation) 會增加精度
  
