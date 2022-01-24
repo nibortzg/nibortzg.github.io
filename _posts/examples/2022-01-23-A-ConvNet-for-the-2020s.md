@@ -3,7 +3,7 @@ title: (論文筆記) A ConvNet for the 2020s
 author:
   name: Nibor
   link: 
-date: 2021-01-23 21:10:00 +0800
+date: 2021-01-20 18:33:00 +0800
 categories: [Computer Vision, Design Paragigm]
 tags: [Computer Vision, FAIR, Design Paragigm]
 math: true
