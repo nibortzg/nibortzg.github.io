@@ -5,7 +5,7 @@ author:
   link: 
 date: 2021-01-23 20:30:00 +0800
 categories: [Computer Vision, Design Paragigm]
-tags: [Computer Vision, CVPR, FAIR, Design Paragigm]
+tags: [Computer Vision, CVPR]
 math: true
 mermaid: true
 image: 
